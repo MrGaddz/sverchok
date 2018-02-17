@@ -25,7 +25,7 @@ from bpy.props import BoolProperty, FloatVectorProperty, StringProperty, IntProp
 from mathutils import Vector
 
 from sverchok.utils.context_managers import sv_preferences
-from sverchok.utils.sv_node_utils import recursive_framed_location_finder
+from sverchok.utils.sv_node_utils import recursive_framed_location_finder, scaled_dpi
 from sverchok.node_tree import SverchCustomTreeNode
 from sverchok.data_structure import node_id, updateNode
 from sverchok.ui import nodeview_bgl_viewer_draw_mk2 as nvBGL
@@ -132,9 +132,10 @@ class SvStethoscopeNodeMK2(bpy.types.Node, SverchCustomTreeNode):
             try:
                 with sv_preferences() as prefs:
                     scale = prefs.stethoscope_view_scale
-                    location_theta = prefs.stethoscope_view_xy_multiplier
-            except:
-                # print('did not find preferences - you need to save user preferences')
+                    # location_theta = prefs.stethoscope_view_xy_multiplier
+                    location_theta = scaled_dpi()
+            except Exception as err:
+                # print('stethoscope did not find preferences - you need to save user preferences\n', err)
                 scale = 1.0
                 location_theta = 1.0
 
