@@ -165,6 +165,8 @@ class SverchokPreferences(AddonPreferences):
 
     stethoscope_view_scale = FloatProperty(
         default=1.0, min=0.01, step=0.01, description='default stethoscope scale')
+    
+    # this is not uncommented because it might be present in certain saved setups
     stethoscope_view_xy_multiplier = FloatProperty(
         default=1.0, min=0.01, step=0.01, description='default stethoscope scale')
 
@@ -269,7 +271,7 @@ class SverchokPreferences(AddonPreferences):
             box_sub1_col = box_sub1.column(align=True)
             box_sub1_col.label('stethoscope mk2 settings')
             box_sub1_col.prop(self, 'stethoscope_view_scale', text='scale')
-            box_sub1_col.prop(self, 'stethoscope_view_xy_multiplier', text='xy multiplier')
+            # box_sub1_col.prop(self, 'stethoscope_view_xy_multiplier', text='xy multiplier')
 
             col3 = row_sub1.split().column()
             col3.label('Location of custom defaults')
